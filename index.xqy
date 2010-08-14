@@ -17,7 +17,18 @@ declare function local:generate-option( $o ) {
 (: This function simply displays an html form as described in the figures :)
 declare function local:display-form() {
   <form name="question_new" method="POST" action="/" id="question_new">
-    <label for="/question/text">Question</label><br/>
+    <input type="hidden" name="/question/created-at" 
+      id="/question/created-at" value="{fn:current-dateTime()}"/>
+    <input type="hidden" name="/question/author" 
+      id="/question/author" value="{xdmp:get-current-user()}"/>
+    <br/> <label for="/question/difficulty">Difficulty: </label>
+      <input type="text" name="/question/difficulty" 
+        id="/question/difficulty" size="50"/>
+    <br/> <label for="/question/topic">Topic:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </label>
+      <input type="text" name="/question/topic" 
+        id="/question/topic" size="50"/>
+    <br/><br/> <label for="/question/text">Question</label><br/>
     &nbsp;&nbsp;&nbsp; <textarea name="/question/text" id="/question/text" 
       rows="2" cols="50">
     Question goes here </textarea>
